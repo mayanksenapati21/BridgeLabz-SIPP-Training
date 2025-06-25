@@ -5,16 +5,16 @@ public class Q18 {
     static int[][] generateScores(int n) {
         int[][] scores = new int[n][3];
         for (int i = 0; i < n; i++) {
-            scores[i][0] = (int) (Math.random() * 41 + 60); 
-            scores[i][1] = (int) (Math.random() * 41 + 60); 
-            scores[i][2] = (int) (Math.random() * 41 + 60); 
+            scores[i][0] = (int) (Math.random() * 41 + 60);
+            scores[i][1] = (int) (Math.random() * 41 + 60);
+            scores[i][2] = (int) (Math.random() * 41 + 60);
         }
         return scores;
     }
 
     static double[][] calculatePerformance(int[][] scores) {
         int n = scores.length;
-        double[][] result = new double[n][3]; 
+        double[][] result = new double[n][3];
         for (int i = 0; i < n; i++) {
             int total = scores[i][0] + scores[i][1] + scores[i][2];
             double average = total / 3.0;
@@ -42,7 +42,7 @@ public class Q18 {
     }
 
     static void displayScorecard(int[][] scores, double[][] performance, String[] grades) {
-        System.out.printf("%-10s %-8s %-8s %-8s %-8s %-10s %-12s %-8s\n", 
+        System.out.printf("%-10s %-8s %-8s %-8s %-8s %-10s %-12s %-8s\n",
             "Student", "Physics", "Chemistry", "Maths", "Total", "Average", "Percentage", "Grade");
 
         for (int i = 0; i < scores.length; i++) {
