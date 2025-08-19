@@ -1,0 +1,124 @@
+
+Pseudo-code Problems – Day 2
+
+1. Java OOPs
+
+🟢 Easy
+1. Traffic Signal Simulation
+ENUM TrafficLight { RED, GREEN, YELLOW }
+CLASS TrafficController
+    VARIABLE currentLight : TrafficLight
+    METHOD switchLight()
+        IF currentLight == RED
+            SET currentLight = GREEN
+        ELSE IF currentLight == GREEN
+            SET currentLight = YELLOW
+        ELSE IF currentLight == YELLOW
+            SET currentLight = RED
+    END METHOD
+    METHOD startSimulation(interval)
+        LOOP FOREVER
+            PRINT "Current Light: " + currentLight
+            WAIT interval seconds
+            CALL switchLight()
+        END LOOP
+END CLASS
+
+🟡 Moderate
+1. Smart Farming System
+ABSTRACT CLASS Crop
+    METHOD waterRequirement() : ABSTRACT
+    METHOD harvest() : ABSTRACT
+CLASS Rice EXTENDS Crop
+    METHOD waterRequirement()
+        RETURN "High water needed"
+    METHOD harvest()
+        RETURN "Rice harvested in 120 days"
+CLASS Wheat EXTENDS Crop
+    METHOD waterRequirement()
+        RETURN "Moderate water needed"
+    METHOD harvest()
+        RETURN "Wheat harvested in 90 days"
+MAIN
+    CREATE crop1 = new Rice()
+    PRINT crop1.waterRequirement()
+    PRINT crop1.harvest()
+    CREATE crop2 = new Wheat()
+    PRINT crop2.waterRequirement()
+    PRINT crop2.harvest()
+END MAIN
+
+2. Data Structures & Algorithms
+
+🟢 Easy
+1. Online Quiz Timer
+CLASS CircularTimer
+    VARIABLE slots[] : ARRAY
+    VARIABLE size, currentIndex
+    METHOD initialize(size)
+        CREATE slots[size]
+        SET this.size = size
+        SET currentIndex = 0
+    METHOD nextSlot()
+        currentIndex = (currentIndex + 1) MOD size
+        RETURN slots[currentIndex]
+    METHOD startQuiz()
+        FOR EACH slot in slots
+            PRINT "Time left for question: " + slot
+            IF slot <= 10 seconds
+                PRINT "⚠ Warning: Time almost up!"
+        END FOR
+END CLASS
+
+ 1. Job Scheduler using Priority Queue
+CLASS Job
+    VARIABLE name, deadline, processingTime, priority
+CLASS JobScheduler
+    PRIORITY_QUEUE<Job> jobs (priority = earliest deadline OR shortest time)
+    METHOD addJob(job)
+        jobs.enqueue(job)
+    METHOD processJobs()
+        WHILE jobs is NOT EMPTY
+            job = jobs.dequeue()
+            PRINT "Processing: " + job.name
+        END WHILE
+END CLASS
+
+3. Collections, Generics, Streams
+
+ 
+1. Online Store Cart System
+CLASS Item
+    VARIABLE name, price
+GENERIC METHOD calculateTotalPrice(cart : List<Item>)
+    total = 0
+    FOR EACH item IN cart
+        total = total + item.price
+    RETURN total
+MAIN
+    CREATE cart = new List<Item>()
+    cart.add(new Item("Book", 200))
+    cart.add(new Item("Pen", 20))
+    PRINT "Total Price: " + calculateTotalPrice(cart)
+END MAIN
+
+ 
+1. Hospital Department Mapper
+CLASS Doctor
+    VARIABLE name, specialization
+CLASS Hospital
+    MAP<String, List<Doctor>> departmentMap
+    METHOD addDoctor(department, doctor)
+        departmentMap[department].add(doctor)
+    METHOD filterBySpecialization(department, specialization)
+        doctors = departmentMap[department]
+        RETURN doctors WHERE doctor.specialization == specialization
+END CLASS
+MAIN
+    CREATE hospital = new Hospital()
+    hospital.addDoctor("Cardiology", new Doctor("Dr. A", "Heart"))
+    hospital.addDoctor("Cardiology", new Doctor("Dr. B", "Heart"))
+    hospital.addDoctor("Neurology", new Doctor("Dr. C", "Brain"))
+    cardiologists = hospital.filterBySpecialization("Cardiology", "Heart")
+    PRINT cardiologists
+END MAIN
