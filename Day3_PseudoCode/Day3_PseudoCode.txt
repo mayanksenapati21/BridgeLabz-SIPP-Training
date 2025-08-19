@@ -1,0 +1,96 @@
+Pseudo-code Problems - Day 3
+
+1. Java OOPs
+
+1. Food Delivery System (Composition)
+Class Customer
+    attributes: name, address
+
+Class Restaurant
+    attributes: name, location
+
+Class DeliveryBoy
+    attributes: name, vehicleNumber
+
+Class Order
+    attributes: customer, restaurant, deliveryBoy, foodItem, price
+    method showOrderDetails()
+        print customer.name, restaurant.name, deliveryBoy.name, foodItem, price
+
+
+2. Medical Record Manager (Interfaces + Polymorphism)
+Interface Searchable
+    method search(keyword) -> boolean
+
+Interface Printable
+    method printReport()
+
+Class BloodReport implements Searchable, Printable
+    attributes: patientName, bloodGroup
+    method search(keyword)
+        return true if patientName OR bloodGroup matches keyword
+    method printReport()
+        print "Blood Report: patientName, bloodGroup"
+
+Class XRayReport implements Searchable, Printable
+    attributes: patientName, bodyPart
+    method search(keyword)
+        return true if patientName OR bodyPart matches keyword
+    method printReport()
+        print "XRay Report: patientName, bodyPart"
+
+
+2. Data Structures & Algorithms
+
+1. Patient Record Hashing (HashMap)
+Data Structure: HashMap<patientID, Patient>
+
+Class Patient
+    attributes: id, name, age
+
+Methods:
+    addPatient(patient)
+        put (patient.id, patient) in HashMap
+    getPatient(id)
+        return HashMap.get(id)
+    updatePatient(id, newPatient)
+        replace entry in HashMap
+    deletePatient(id)
+        remove entry from HashMap
+
+
+2. Maze Solver Bot (Recursion + Backtracking)
+Function solveMaze(maze, x, y, visited):
+    if (x,y) is destination → return true
+
+    if (x,y) is valid and not visited:
+        mark visited[x][y] = true
+
+        if solveMaze(right cell) → return true
+        if solveMaze(down cell) → return true
+        if solveMaze(left cell) → return true
+        if solveMaze(up cell) → return true
+
+        unmark visited[x][y]  // backtrack
+
+    return false
+
+
+3. Collections, Generics, Streams
+
+1. Library Book Filter (Streams + Lambda)
+Class Book
+    attributes: title, year, rating
+
+Function filterBooks(bookList):
+    return all books where year > 2015 AND rating > 4.5
+
+
+2. Payment Processor (Generics)
+Generic Class Transaction<T>
+    attributes: paymentMode (type T), amount
+    method processTransaction()
+        print "Processing paymentMode of amount"
+
+Example:
+    Transaction<UPI>, Transaction<Card>, Transaction<NetBanking>
