@@ -1,0 +1,19 @@
+Pseudo-code: Undo Feature in Text Editor (Stack)
+
+CLASS TextEditor
+    STACK operations
+
+    METHOD type(text)
+        PUSH text
+
+    METHOD undo()
+        IF stack not empty
+            POP last operation
+            PRINT reverted
+        ELSE
+            PRINT nothing to undo
+
+MAIN
+    CREATE editor
+    CALL type
+    CALL undo

@@ -1,0 +1,8 @@
+Pseudo-code: Student Score Storage
+
+CREATE HashMap<String, Integer> studentScores
+PUT (name, score)
+
+highestScorer = stream(studentScores).max(by value)
+
+PRINT highestScorer

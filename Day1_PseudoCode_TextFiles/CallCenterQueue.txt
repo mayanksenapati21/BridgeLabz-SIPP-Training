@@ -1,0 +1,24 @@
+Pseudo-code: Call Center Queue Management
+
+CLASS CallCenter
+    QUEUE normalQueue
+    QUEUE emergencyQueue
+
+    METHOD addCustomer(name, type)
+        IF emergency
+            ENQUEUE emergencyQueue
+        ELSE
+            ENQUEUE normalQueue
+
+    METHOD serveCustomer()
+        IF emergencyQueue not empty
+            DEQUEUE emergencyQueue
+        ELSE IF normalQueue not empty
+            DEQUEUE normalQueue
+        ELSE
+            PRINT no customers
+
+MAIN
+    CREATE CallCenter
+    ADD customers
+    SERVE customers

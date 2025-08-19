@@ -1,0 +1,15 @@
+Pseudo-code: Library Membership Tracker
+
+CLASS Member
+    ATTRIBUTES: name, id, membershipDate
+    CONSTRUCTOR(name, id, membershipDate)
+
+    METHOD checkMembershipValidity(currentDate)
+        IF difference <= 365 days
+            RETURN "Membership Active"
+        ELSE
+            RETURN "Membership Expired"
+
+MAIN
+    CREATE member
+    CALL checkMembershipValidity

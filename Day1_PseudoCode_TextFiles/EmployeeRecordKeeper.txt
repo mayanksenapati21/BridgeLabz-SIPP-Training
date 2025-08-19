@@ -1,0 +1,13 @@
+Pseudo-code: Employee Record Keeper
+
+CLASS Employee
+    ATTRIBUTES: name, department
+
+MAIN
+    CREATE ArrayList<Employee>
+    ADD employees
+
+    itEmployees = employees.stream()
+        .filter(department == "IT")
+
+    PRINT itEmployees
