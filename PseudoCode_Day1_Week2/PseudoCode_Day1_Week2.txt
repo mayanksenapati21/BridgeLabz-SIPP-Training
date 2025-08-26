@@ -1,0 +1,152 @@
+Pseudo-code Problems – Day 1 (Week 2)
+
+1. Java OOPs
+
+🟢 Easy
+1. Online Exam Portal (Basic)
+Concepts: Inheritance, Method Overriding, Polymorphism
+
+Class User
+    Attributes: username, password
+    Method: login()
+
+Class Student extends User
+    Override login():
+        If registered AND enrolled
+            Print "Access granted to exams"
+        Else
+            Print "Access denied"
+
+Class Admin extends User
+    Override login():
+        If staff credentials valid AND admin privilege
+            Print "Access granted to exam management"
+        Else
+            Print "Access denied"
+
+Main:
+    student = new Student("john123", "pwd")
+    student.login()
+
+    admin = new Admin("admin01", "pwd")
+    admin.login()
+
+
+2. Movie Ticket Booking
+Concepts: Encapsulation, Object Interaction, Class Composition
+
+Class Ticket
+    Attributes: movieName, seatNumber, price, status
+    Methods: book(), cancel()
+
+Class Theatre
+    Attributes: name, List<MovieSchedule>, availableSeats
+    Methods: issueTicket(customer, movie, seat)
+             cancelTicket(ticket)
+
+Class Customer
+    Attributes: name
+    Methods: bookTicket(theatre, movie, seat)
+             cancelTicket(ticket)
+
+Scenario:
+    customer = new Customer("Ravi")
+    ticket = theatre.issueTicket(customer, "Avengers", "A12")
+    customer.cancelTicket(ticket)
+
+
+2. Data Structures & Algorithms
+
+🟢 Easy
+1. Bus Route Navigator
+Concepts: LinkedList, Insertion, Deletion, Search
+
+Class Node
+    Attributes: stopName, next
+
+Class LinkedList
+    Method insert(stopName, position)
+    Method delete(stopName)
+    Method search(stopName)
+
+Main:
+    route = new LinkedList()
+    route.insert("Depot")
+    route.insert("Main Street")
+    route.insert("City Mall")
+    route.insert("Hospital")
+    route.insert("Airport")
+
+    route.insert("University", after "City Mall")
+    route.delete("Hospital")
+    route.search("Airport") → Found
+
+
+2. Attendance Marker
+Concepts: 2D Array, Data Storage, Iteration
+
+Matrix attendance[students][days]
+
+Function markAttendance(student, day, status):
+    attendance[student][day] = status
+
+Function updateAttendance(student, day, status):
+    attendance[student][day] = status
+
+Function report(student):
+    count = number of 'P' in attendance[student]
+    Print "Student attended " + count + " days"
+
+Example:
+    attendance[1][1..7] = [P, P, A, P, P, P, A]
+    updateAttendance(1, 3, P)
+    report(1) → 26 days present
+
+
+3. Collections, Generics, Streams
+
+🟢 Easy
+1. Daily Tasks Organizer
+Concepts: LinkedHashMap<Integer, String>, Insertion Order Preservation
+
+LinkedHashMap<Integer, String> tasks
+taskId = 0
+
+Function addTask(description):
+    taskId++
+    tasks.put(taskId, description)
+
+Function removeTask(id):
+    tasks.remove(id)
+
+Function viewTasks():
+    For each (id, desc) in tasks
+        Print id → desc
+
+Example:
+    addTask("Check emails")
+    addTask("Prepare sales report")
+    addTask("Call client")
+    removeTask(2)
+    viewTasks() → 1 → Check emails, 3 → Call client
+
+
+2. Simple Word Counter
+Concepts: Map<String, Integer>, Stream API, Word Frequency Analysis
+
+Function wordCount(paragraph):
+    Normalize text to lowercase
+    Remove punctuation
+    Split into words
+
+    Map<String, Integer> wordFreq
+    For each word:
+        wordFreq[word]++
+
+    Sort wordFreq by value (frequency)
+    Print word → count
+
+Example:
+    "The news today is about the rise in technology trends"
+    Output:
+        the (2), news (1), today (1), is (1), about (1), rise (1), in (1), technology (1), trends (1)
