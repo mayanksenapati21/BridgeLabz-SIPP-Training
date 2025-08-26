@@ -1,0 +1,110 @@
+Pseudo-code Problems – Day 5
+
+1. Java OOPs
+
+🔴 Difficult
+1. Healthcare Diagnosis Engine
+(Strategy Pattern + Encapsulation + Interfaces)
+
+Interface DiagnosisStrategy
+    Method: diagnose(List<String> symptoms) → List<String> possibleDiseases
+
+Class RuleBasedDiagnosis implements DiagnosisStrategy
+    Method diagnose(symptoms):
+        If symptoms contain (fever, cough, fatigue)
+            Return ["Flu", "COVID-19"]
+
+Class AIBasedDiagnosis implements DiagnosisStrategy
+    Method diagnose(symptoms):
+        If symptoms contain (headache, dizziness, nausea)
+            Return ["Migraine", "Vertigo"]
+
+Class ProbabilityBasedDiagnosis implements DiagnosisStrategy
+    Method diagnose(symptoms):
+        Apply probability model on symptoms
+        Return ["Disease1 (70%)", "Disease2 (30%)"]
+
+Class DiagnosisContext
+    Attribute: strategy (DiagnosisStrategy)
+    Method: setStrategy(DiagnosisStrategy s)
+        strategy = s
+    Method: executeDiagnosis(symptoms):
+        return strategy.diagnose(symptoms)
+
+Main:
+    patient1Symptoms = ["fever", "cough", "fatigue"]
+    context.setStrategy(new RuleBasedDiagnosis())
+    result = context.executeDiagnosis(patient1Symptoms)
+    Print result  // ["Flu", "COVID-19"]
+
+    patient2Symptoms = ["headache", "dizziness", "nausea"]
+    context.setStrategy(new AIBasedDiagnosis())
+    result = context.executeDiagnosis(patient2Symptoms)
+    Print result  // ["Migraine", "Vertigo"]
+
+    // Tomorrow new GeneticPatternDiagnosis can be added
+    // Just implement DiagnosisStrategy → plug into context without modifying old code
+
+
+2. Restaurant POS Billing System
+(Polymorphism + Inheritance + Interfaces)
+
+Interface TaxCalculator
+    Method: calculateTax(basePrice) → double
+
+Class FoodTax implements TaxCalculator
+    Method calculateTax(basePrice):
+        return basePrice * 0.05
+
+Class BeverageTax implements TaxCalculator
+    Method calculateTax(basePrice):
+        return basePrice * 0.12
+
+Class ImportedTax implements TaxCalculator
+    Method calculateTax(basePrice):
+        return (basePrice * 0.05) + (basePrice * 0.10) // GST + Customs
+
+Class MenuItem
+    Attributes: name, basePrice, TaxCalculator taxStrategy
+    Method getFinalPrice():
+        return basePrice + taxStrategy.calculateTax(basePrice)
+
+----------------------------------
+
+Interface DiscountStrategy
+    Method: applyDiscount(totalAmount) → double
+
+Class FlatDiscount implements DiscountStrategy
+    Method applyDiscount(totalAmount):
+        return totalAmount - 100
+
+Class PercentageDiscount implements DiscountStrategy
+    Method applyDiscount(totalAmount):
+        return totalAmount * 0.90  // 10% off
+
+Class NoDiscount implements DiscountStrategy
+    Method applyDiscount(totalAmount):
+        return totalAmount
+
+Class Bill
+    Attributes: List<MenuItem> items, DiscountStrategy discount
+    Method calculateFinalBill():
+        subtotal = 0
+        For each item in items:
+            subtotal += item.getFinalPrice()
+        return discount.applyDiscount(subtotal)
+
+----------------------------------
+
+Main:
+    items = []
+    items.add(MenuItem("Paneer Tikka", 200, new FoodTax()))
+    items.add(MenuItem("Coke", 100, new BeverageTax()))
+    items.add(MenuItem("Imported Cheese", 500, new ImportedTax()))
+
+    bill = new Bill(items, new PercentageDiscount()) // Apply 10% off
+    finalAmount = bill.calculateFinalBill()
+    Print finalAmount
+
+    // Future: Add "Buy1Get1Discount" → just implement DiscountStrategy
+    // No need to change existing billing logic
