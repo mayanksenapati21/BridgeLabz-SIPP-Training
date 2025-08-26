@@ -1,0 +1,254 @@
+Pseudo-code Problems - Day 2 (Week 2)
+
+1. Java OOPs
+🟢 Easy
+1. Online Exam Portal (Basic)
+Concepts: Inheritance, Method Overriding, Polymorphism
+Story: You are building a university’s online examination portal that will be used by
+thousands of students and administrators.
+The portal needs two main types of users:
+1. Students – log in to take exams, view results, and track progress.
+2. Admin – log in to create exams, manage questions, and review student
+performance.
+Scenario details:
+● Create a base class User with common attributes like username, password,
+and a login() method.
+● Derive two subclasses:
+○ Student: Overrides login() to check if the student is registered and
+enrolled in a course before granting access to exams.
+○ Admin: Overrides login() to verify staff credentials and admin
+privileges before allowing exam management.
+
+Example run:
+● A student enters the username "john123" and password. The system validates
+their credentials and enrollment before showing available exams.
+● An admin logs in, and the system checks both credentials and role, then shows
+tools to create or manage exams.
+Why it’s real-world: Almost every online learning platform (Coursera, edX, university
+LMS systems) uses role-based login systems, making this a fundamental OOPS
+modeling example.
+
+Pseudo-code Problems - Day 2 (Week 2)
+
+🟡 Moderate
+2. Parking Lot Ticketing System
+Concepts: Java OOPs — Inheritance, Polymorphism, Method Overriding
+Story: The Galaxy Mall in your city is one of the busiest shopping destinations. Every
+weekend, the parking lot is packed with cars, bikes, and trucks. To streamline
+operations, the mall decided to build an automated parking ticketing system.
+Scenario Details:
+1. Real-world Setting
+○ The parking lot has different parking zones for cars, bikes, and trucks.
+○ Each vehicle gets a ticket when entering.
+○ The ticket contains:
+■ Vehicle type
+■ Vehicle number
+■ Entry time
+○ When the vehicle exits, the system calculates the parking fee based on:
+■ Vehicle type
+■ Total hours parked
+2. Object-Oriented Structure
+○ Superclass: Vehicle
+■ Fields: vehicleNumber, entryTime
+■ Method: calculateFee(exitTime) → overridden in
+subclasses.
+○ Subclasses:
+■ Car — base fee ₹50 for first hour, ₹30 per extra hour.
+■ Bike — base fee ₹20 for first hour, ₹10 per extra hour.
+■ Truck — base fee ₹100 for first hour, ₹50 per extra hour.
+
+3. How It Works
+○ When a vehicle enters:
+■ Create an object of the respective subclass (Car, Bike, or
+Truck).
+■ Record the entry time.
+○ When a vehicle exits:
+■ Call calculateFee(exitTime) for that vehicle.
+■ Print ticket details and amount to be paid.
+
+Pseudo-code Problems - Day 2 (Week 2)
+4. Example Run
+Morning:
+○ Car KA05AB1234 enters at 10:00 AM.
+○ Bike KA05XY7890 enters at 11:15 AM.
+○ Truck KA09TR5566 enters at 09:30 AM.
+5. Evening exit:
+○ Car exits at 1:30 PM → Fee = ₹50 + (2.5 hrs × ₹30) = ₹125.
+○ Bike exits at 12:00 PM → Fee = ₹20 + (0.75 hrs rounded to 1 hr × ₹10) =
+₹30.
+○ Truck exits at 2:00 PM → Fee = ₹100 + (4.5 hrs × ₹50) = ₹325.
+6. Why It’s Real-World
+○ This is the same logic used in real mall parking systems like Central
+Mall or Phoenix Marketcity, where charges depend on the type of
+vehicle and duration of parking.
+○ Using inheritance allows easy addition of new vehicle types in the future.
+
+2. Data Structures & Algorithms
+🟢 Easy
+1. Bus Route Navigator
+Concepts: LinkedList, Insertion, Deletion, Search
+Story: You’re working with the city’s transport department to digitize bus route
+management.
+Currently, bus stops are written on paper charts, but the system needs to handle
+frequent route changes — stops get added, removed, or rearranged based on traffic
+conditions.
+Scenario details:
+● Each bus stop will be a node in a LinkedList.
+● The LinkedList represents the order in which the bus travels.
+● Insertion: A new bus stop is added if the city wants to introduce a detour or
+service a new neighborhood.
+
+Pseudo-code Problems - Day 2 (Week 2)
+● Deletion: A stop is removed if the route no longer passes there due to road
+construction or low demand.
+● Search: Passengers can check whether their desired stop is part of the route.
+Example run:
+● Initial route: Depot → Main Street → City Mall → Hospital → Airport
+● City adds University Stop after City Mall.
+● Later, removes the Hospital due to road closure.
+● Passenger searches for Airport, system confirms it’s still in the route.
+Why it’s real-world: Many public transport systems (like Delhi DTC, Bangalore BMTC)
+dynamically change bus routes, and LinkedList makes insertion/removal operations
+efficient compared to arrays.
+🟡 Moderate
+1. Attendance Marker
+Concepts: Java DSA — 2D Arrays, Iteration, Search
+Story Context - Imagine you are building an Attendance Tracking System for
+“Sunrise Public School”. Teachers in this school want a digital logbook to replace their
+manual attendance registers.
+Instead of flipping through registers every month, they want an app where they can
+quickly see:
+● Whether a student was Present (P) or Absent (A) on a given day.
+● How many days a student attended in a month.
+● Which students have low attendance (< 75%).
+Scenario Details
+1. Real-world Setup
+○ The school has 30 students in Class 10A.
+○ The teacher takes attendance daily for 30 days in a month.
+○ Attendance is marked as:
+■ 1 → Present
+■ 0 → Absent
+
+2. Data Representation (Why 2D Array?)
+○ Each row in the 2D array represents a student.
+○ Each column represents a day of the month.
+
+Pseudo-code Problems - Day 2 (Week 2)
+○ Example for 5 students over 5 days:
+[ 1 0 1 1 1 ] → Student 1 (Absent on Day 2)
+[ 1 1 1 0 1 ] → Student 2 (Absent on Day 4)
+[ 0 0 1 1 1 ] → Student 3 (Absent on Day 1,2)
+[ 1 1 1 1 1 ] → Student 4 (Perfect attendance)
+[ 1 0 0 1 0 ] → Student 5 (Mostly absent)
+
+3. Operations Needed
+○ Mark attendance: Update the array for a given student and day.
+○ Daily summary: Count how many students were present on a given day.
+○ Monthly summary: Count total days present for each student.
+○ Defaulter list: Identify students with < 75% attendance.
+4. Example Run
+○ Teacher marks attendance for Day 1 → Student 1 = Present,
+Student 3 = Absent.
+○ By Day 15, teacher wants to check:
+■ “How many students came on Day 10?” → Count 1s in column 10.
+■ “Did Student 5 attend more than 20 days?” → Count 1s in row 5.
+■ “Which students have attendance < 22 days?” → Print their roll
+numbers.
+Why This Feels Real-World
+● This is how many schools and colleges digitize attendance systems today
+(sometimes using Excel or ERP software).
+● The 2D array acts like a spreadsheet grid, making it easier to compute
+attendance reports automatically.
+● Teachers can also export this data for report cards or for sending warnings to
+parents.
+
+3. Collections, Generics, Streams
+🟢 Easy
+1. Simple Word Counter
+Concepts: Map<String, Integer>, Stream API, Frequency Counting
+
+Pseudo-code Problems - Day 2 (Week 2)
+Story Context - A news website wants to know which words are used most often in
+their articles to understand trending topics. Instead of manually scanning articles, they
+want an automatic word counter.
+Scenario Details
+1. Setup
+○ The website stores articles in plain text (paragraphs).
+○ Example article snippet:
+"Sports bring people together. Sports inspire teamwork.
+Sports create leaders."
+2. Problem
+● Editors want to know:
+○ How many times “Sports” was mentioned?
+○ Which word is most frequent?
+○ Which words are rarely used?
+3. Data Representation
+● Use a Map<String, Integer> where:
+○ Key → word
+○ Value → count of occurrences
+Example after processing:
+Sports → 3
+bring → 1
+people → 1
+together → 1
+inspire → 1
+teamwork → 1
+create → 1
+leaders → 1
+
+Pseudo-code Problems - Day 2 (Week 2)
+4. Stream API Usage
+
+○ Split text into words.
+○ Normalize (lowercase, remove punctuation).
+○ Use stream() + Collectors.toMap() or
+Collectors.groupingBy() to count occurrences.
+
+5. Outcome
+
+○ Editors instantly see the most used keywords.
+○ Helps them tag articles automatically (e.g., “sports”, “teamwork”).
+○ Gives insight into trending content without manual effort.
+
+🟡 Moderate
+2. Online Survey Report Generator
+Concepts: Collectors.groupingBy(), Aggregation, Averages
+Story Context - A food delivery app conducts a customer satisfaction survey
+after each order. They ask:
+“How would you rate your experience (1–5)?”
+Now, the management wants an automated survey report grouped by restaurant,
+showing the average satisfaction score.
+Scenario Details
+1. Setup - Survey responses are stored as a list of objects:
+class SurveyResponse {
+String restaurantName;
+int rating; // (1 to 5)
+}
+Example data:
+PizzaHut → 4
+PizzaHut → 5
+KFC → 3
+KFC → 4
+Subway → 5
+
+Pseudo-code Problems - Day 2 (Week 2)
+Subway → 4
+Subway → 5
+2. Problem
+○ Management wants to know:
+■ Average rating per restaurant.
+■ Which restaurant has the highest customer satisfaction?
+■ Which one needs improvement?
+
+3. Data Representation
+○ Use
+Collectors.groupingBy(SurveyResponse::getRestaurantNam
+e, Collectors.averagingInt(SurveyResponse::getRating))
+Example result:
+PizzaHut → 4.5
+KFC → 3.5
+Subway → 4.67
+4. Outcome
+○ Managers see that Subway is doing great.
+○ KFC has a lower rating and may need improvement in service.
+○ Can auto-generate monthly reports for decision-making.
